@@ -3,8 +3,8 @@ import 'dart:math';
 
 import '../../global_export.dart';
 
-class AlphaHelperFuncs{
-  const AlphaHelperFuncs._();
+class A12HelperFuncs{
+  const A12HelperFuncs._();
 
   
   static int getRandomNumber(double ceiling){
@@ -31,7 +31,7 @@ class AlphaHelperFuncs{
       reference = ref;
     }
     else{
-      reference = context!.getRef;
+      reference = context!.ref;
     }
     Future.delayed(
       Duration(milliseconds: duration ?? 0),
@@ -56,5 +56,4 @@ class AlphaHelperFuncs{
   static void disposeDebouncer() {
     _debounce?.cancel();
   }
-
 }

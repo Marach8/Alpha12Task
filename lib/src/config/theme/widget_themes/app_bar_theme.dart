@@ -1,17 +1,17 @@
 import '../../../global_export.dart';
 
-class AlphaAppBarTheme{
-  const AlphaAppBarTheme._();
+class A12AppBarTheme{
+  const A12AppBarTheme._();
 
   static AppBarTheme lightAppBarTheme = AppBarTheme(
     elevation: 0,
     scrolledUnderElevation: 0,
     centerTitle: true,
-    backgroundColor: AlphaColors.white,
+    backgroundColor: A12Colors.hexFBFBFB,
     titleTextStyle: TextStyle(
-      color: AlphaColors.hex1B1B1B,
-      fontSize: AlphaFontSizes.size16,
-      fontWeight: AlphaFontWeights.w500,
+      color: A12Colors.hex1B1B1B,
+      fontSize: A12FontSizes.size16,
+      fontWeight: A12FontWeights.w500,
       overflow: TextOverflow.ellipsis,
     ),
   );
@@ -21,11 +21,11 @@ class AlphaAppBarTheme{
     elevation: 0,
     scrolledUnderElevation: 0,
     centerTitle: true,
-    backgroundColor: AlphaColors.black,
+    backgroundColor: A12Colors.black,
     titleTextStyle: TextStyle(
-      color: AlphaColors.white,
-      fontSize: AlphaFontSizes.size16,
-      fontWeight: AlphaFontWeights.w500,
+      color: A12Colors.white,
+      fontSize: A12FontSizes.size16,
+      fontWeight: A12FontWeights.w500,
       overflow: TextOverflow.ellipsis,
     ),
   );

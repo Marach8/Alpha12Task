@@ -1,65 +1,60 @@
 import '../../../global_export.dart';
 
-class AlphaInputDecorationTheme{
-  const AlphaInputDecorationTheme._();
+class A12InputDecorationTheme{
+  const A12InputDecorationTheme._();
 
   static InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 1,
     isDense: true,
-    contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-    fillColor: AlphaColors.transparent,
+    contentPadding: const EdgeInsets.all(8),
+    fillColor: A12Colors.white,
     filled: true,
     hintStyle: TextStyle(
-      color: AlphaColors.black.withValues(alpha: 0.5),
-      fontSize: AlphaFontSizes.size14,
-      fontWeight: AlphaFontWeights.w500,
+      color: A12Colors.hexCBD5E1,
+      fontSize: A12FontSizes.size14,
+      fontWeight: A12FontWeights.w400,
       overflow: TextOverflow.ellipsis,
+      height: 1.43
     ),
     errorStyle: TextStyle(
-      color: AlphaColors.red.withValues(alpha: 0.6),
-      fontSize: AlphaFontSizes.size12,
-      fontWeight: AlphaFontWeights.w400,
+      color: A12Colors.red.withValues(alpha: 0.6),
+      fontSize: A12FontSizes.size12,
+      fontWeight: A12FontWeights.w400,
       overflow: TextOverflow.ellipsis,
     ),
 
     enabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(
-        width: 0.5,
-        color: AlphaColors.hex1B1B1B
-      )
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(color: A12Colors.hexE2E8F0)
     ),
 
     disabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(
         width: 0.5,
-        color: AlphaColors.hex1B1B1B.withValues(alpha: 0.2)
+        color: A12Colors.hex1B1B1B.withValues(alpha: 0.2)
       )
     ),
 
     errorBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(
         width: 0.5,
-        color: AlphaColors.red.withValues(alpha: 0.6)
+        color: A12Colors.red.withValues(alpha: 0.6)
       )
     ),
 
     focusedErrorBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(
         width: 0.8,
-        color: AlphaColors.red.withValues(alpha: 0.8)
+        color: A12Colors.red.withValues(alpha: 0.8)
       )
     ),
 
     focusedBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(
-        width: 0.8,
-        color: AlphaColors.hex1B1B1B
-      )
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(color: A12Colors.hexE2E8F0)
     ),
   );
 
@@ -68,61 +63,57 @@ class AlphaInputDecorationTheme{
   static InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 1,
     isDense: true,
-    contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-    fillColor: AlphaColors.transparent,
+    contentPadding: const EdgeInsets.all(8),
+    fillColor: A12Colors.black,
     filled: true,
     hintStyle: TextStyle(
-      color: AlphaColors.white.withValues(alpha: 0.5),
-      fontSize: AlphaFontSizes.size14,
-      fontWeight: AlphaFontWeights.w500,
+      color: A12Colors.hex334155,
+      fontSize: A12FontSizes.size14,
+      fontWeight: A12FontWeights.w400,
       overflow: TextOverflow.ellipsis,
+      height: 1.43
     ),
+
     enabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(
-        width: 0.5,
-        color: AlphaColors.white.withValues(alpha: 0.5)
-      )
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(color: A12Colors.hex1E293B)
     ),
 
     errorStyle: TextStyle(
-      color: AlphaColors.red.withValues(alpha: 0.6),
-      fontSize: AlphaFontSizes.size12,
-      fontWeight: AlphaFontWeights.w400,
+      color: A12Colors.red.withValues(alpha: 0.6),
+      fontSize: A12FontSizes.size12,
+      fontWeight: A12FontWeights.w400,
       overflow: TextOverflow.ellipsis,
     ),
 
 
     disabledBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(
         width: 0.5,
-        color: AlphaColors.white.withValues(alpha: 0.2)
+        color: A12Colors.white.withValues(alpha: 0.2)
       )
     ),
 
     errorBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(
         width: 0.5,
-        color: AlphaColors.red.withValues(alpha: 0.6)
+        color: A12Colors.red.withValues(alpha: 0.6)
       )
     ),
 
     focusedErrorBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(
         width: 0.8,
-        color: AlphaColors.red.withValues(alpha: 0.8)
+        color: A12Colors.red.withValues(alpha: 0.8)
       )
     ),
 
     focusedBorder: const OutlineInputBorder().copyWith(
-      borderRadius: BorderRadius.circular(8),
-      borderSide: BorderSide(
-        width: 0.8,
-        color: AlphaColors.white
-      )
+      borderRadius: BorderRadius.circular(5),
+      borderSide: BorderSide(color: A12Colors.hex1E293B)
     ),
   );
 }

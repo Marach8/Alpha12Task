@@ -1,0 +1,133 @@
+import 'package:alpha_12_task/src/global_export.dart';
+import 'package:flutter/cupertino.dart';
+
+class CartItem extends StatelessWidget {
+  const CartItem({super.key, required this.product});
+
+  final Product product;
+
+  @override
+  Widget build(BuildContext context) {
+    final bool inDarkMode = context.inDarkMode;
+    return A12Container(
+      height: 132, radius: 15,
+      width: context.screenWidth,
+      padding: const EdgeInsets.all(10),
+      margin: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+      color: A12Colors.hexF6F5F8,
+      child: Row(
+        children: <Widget>[
+          A12ImgLoader(
+            imgPath: product.image!,
+            height: 132, width: 106.7,   
+          ),
+          const SizedBox(width: 10,),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  product.description ?? '',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: A12FontWeights.w400,
+                    height: 1.6
+                  )
+                ),
+                Text(
+                  '\$${product.price ?? 0}',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontSize: A12FontSizes.size17,
+                    height: 1.9
+                  )
+                ),
+                Text(
+                  product.isInStock ? A12Strings.IN_STOCK : A12Strings.OUT_OF_STOCK,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: product.isInStock ? null : A12Colors.red
+                  )
+                ),
+                
+                Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            A12Container(
+                              onTap: () => context.ref.read(productQuantityProvider(product.id).notifier).decreaseQuantity(),
+                              color: inDarkMode ?A12Colors.hex1E293B : A12Colors.hexE2E8F0,
+                              height: 36, width: 36, radius: 32,
+                              padding: const EdgeInsets.all(8),
+                              child: Icon(
+                                Icons.remove, size: 13.33,
+                                color: inDarkMode ? A12Colors.hex475569:  A12Colors.hex64748B,
+                              ),
+                            ),
+                            Consumer(
+                              builder: (_, WidgetRef ref, __) {
+                                final int quantity = ref.watch(productQuantityProvider(product.id));
+                                return Text(
+                                  quantity.toString(),
+                                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                    color: inDarkMode ? A12Colors.hexCBD5E1 : A12Colors.hex334155,
+                                    height: 1.6
+                                  )
+                                );
+                              }
+                            ),
+                            A12Container(
+                              onTap: () => context.ref.read(productQuantityProvider(product.id).notifier).increaseQuantity(),
+                              color: inDarkMode ? A12Colors.black : A12Colors.white,
+                              height: 36, width: 36, radius: 32,
+                              padding: const EdgeInsets.all(8),
+                              border: Border.all(
+                                color: inDarkMode ? A12Colors.hex1E293B : A12Colors.hexE2E8F0
+                              ),
+                              child: Icon(
+                                Icons.add, size: 13.33,
+                                color: inDarkMode ? A12Colors.hexCBD5E1:  A12Colors.hex334155,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 37,),
+                  
+                      A12Container(
+                        onTap: ()async{
+                          final bool? shouldDelete = await confirmActionDialog(
+                            context: context,
+                            title: A12Strings.REMOVE_4RM_CART,
+                            content: 'Are you sure you want to remove ${product.description} from your cart?',
+                            yesString: A12Strings.PROCEED,
+                            noString: A12Strings.CANCEL
+                          );
+
+                          if(context.mounted && (shouldDelete ?? false)){
+                            context.ref.read(cartProvider.notifier).deleteFromCart(product.id);
+                          }
+                        },
+                        color: inDarkMode ? A12Colors.black : A12Colors.white,
+                        height: 36, width: 36, radius: 32,
+                        padding: const EdgeInsets.all(8),
+                        child: Icon(
+                          CupertinoIcons.delete, size: 16.36,
+                          color: inDarkMode ? A12Colors.hexCCCCCC : A12Colors.hex999999,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}

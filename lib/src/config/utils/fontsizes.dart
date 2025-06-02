@@ -1,7 +1,7 @@
 
 
-class AlphaFontSizes{
-  const AlphaFontSizes._();
+class A12FontSizes{
+  const A12FontSizes._();
 
   static double size8 = 8.0;
 
@@ -14,6 +14,8 @@ class AlphaFontSizes{
   static double size15 = 15.0;
 
   static double size16 = 16.0;
+
+  static double size17 = 17.0;
 
   static double size18 = 18.0;
 

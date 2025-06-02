@@ -1,70 +1,130 @@
 import '../../../global_export.dart';
 
-class AlphaTextTheme{
-  const AlphaTextTheme._();
+class A12TextTheme{
+  const A12TextTheme._();
 
-  static TextTheme lightTextTheme = TextTheme( 
-    headlineMedium: TextStyle(
-      color: AlphaColors.hex1B1B1B,
-      fontSize: AlphaFontSizes.size20,
-      fontWeight: AlphaFontWeights.w700,
+  static TextTheme lightTextTheme = TextTheme(
+    headlineSmall: TextStyle(
+      color: A12Colors.black,
+      fontSize: A12FontSizes.size18,
+      fontWeight: A12FontWeights.w700,
       overflow: TextOverflow.ellipsis,
     ),
 
+    titleLarge: TextStyle(
+      color: A12Colors.hex334155,
+      fontSize: A12FontSizes.size12,
+      fontWeight: A12FontWeights.w600,
+      overflow: TextOverflow.ellipsis,
+      height: 2.33
+    ),
 
+    titleMedium: TextStyle(
+      color: A12Colors.hex334155,
+      fontSize: A12FontSizes.size10,
+      fontWeight: A12FontWeights.w600,
+      overflow: TextOverflow.ellipsis,
+      height: 2.8
+    ),
+    
     titleSmall: TextStyle(
-      color: AlphaColors.hex1B1B1B,
-      fontSize: AlphaFontSizes.size16,
-      fontWeight: AlphaFontWeights.w500,
+      color: A12Colors.black,
+      fontSize: A12FontSizes.size14,
+      fontWeight: A12FontWeights.w400,
       overflow: TextOverflow.ellipsis,
     ),
 
-    
-    bodySmall: TextStyle(
-      color: AlphaColors.hex1B1B1B,
-      fontSize: AlphaFontSizes.size14,
-      fontWeight: AlphaFontWeights.w500,
+    bodyMedium: TextStyle(
+      color: A12Colors.hex999999,
+      fontSize: A12FontSizes.size14,
+      fontWeight: A12FontWeights.w400,
       overflow: TextOverflow.ellipsis,
     ),
-    
+
     labelMedium: TextStyle(
-      color: AlphaColors.hex1B1B1B,
-      fontSize: AlphaFontSizes.size12,
-      fontWeight: AlphaFontWeights.w400,
+      color: A12Colors.hex49454F,
+      fontSize: A12FontSizes.size12,
+      fontWeight: A12FontWeights.w500,
       overflow: TextOverflow.ellipsis,
     ),
+
+    labelSmall: TextStyle(
+      color: A12Colors.hex10B981,
+      fontSize: A12FontSizes.size12,
+      fontWeight: A12FontWeights.w400,
+      overflow: TextOverflow.ellipsis,
+      height: 1.3
+    ),
+    
+    // labelMedium: TextStyle(
+    //   color: A12Colors.hex1B1B1B,
+    //   fontSize: A12FontSizes.size12,
+    //   fontWeight: A12FontWeights.w400,
+    //   overflow: TextOverflow.ellipsis,
+    // ),
   );
 
 
 
   static TextTheme darkTextTheme = TextTheme( 
 
-    headlineMedium: TextStyle(
-      color: AlphaColors.white,
-      fontSize: AlphaFontSizes.size20,
-      fontWeight: AlphaFontWeights.w700,
+    headlineSmall: TextStyle(
+      color: A12Colors.white,
+      fontSize: A12FontSizes.size18,
+      fontWeight: A12FontWeights.w700,
       overflow: TextOverflow.ellipsis,
+    ),
+
+    titleLarge: TextStyle(
+      color: A12Colors.hexCBD5E1,
+      fontSize: A12FontSizes.size12,
+      fontWeight: A12FontWeights.w600,
+      overflow: TextOverflow.ellipsis,
+      height: 2.33
+    ),
+
+    titleMedium: TextStyle(
+      color: A12Colors.hexCBD5E1,
+      fontSize: A12FontSizes.size10,
+      fontWeight: A12FontWeights.w600,
+      overflow: TextOverflow.ellipsis,
+      height: 2.8
     ),
 
     titleSmall: TextStyle(
-      color: AlphaColors.white,
-      fontSize: AlphaFontSizes.size16,
-      fontWeight: AlphaFontWeights.w500,
+      color: A12Colors.white,
+      fontSize: A12FontSizes.size14,
+      fontWeight: A12FontWeights.w400,
       overflow: TextOverflow.ellipsis,
     ),
 
-    bodySmall: TextStyle(
-      color: AlphaColors.white,
-      fontSize: AlphaFontSizes.size14,
-      fontWeight: AlphaFontWeights.w500,
+    bodyMedium: TextStyle(
+      color: A12Colors.hexCCCCCC,
+      fontSize: A12FontSizes.size14,
+      fontWeight: A12FontWeights.w400,
       overflow: TextOverflow.ellipsis,
     ),
 
     labelMedium: TextStyle(
-      color: AlphaColors.white,
-      fontSize: AlphaFontSizes.size10,
-      fontWeight: AlphaFontWeights.w400,
+      color: A12Colors.hexCAC4D0,
+      fontSize: A12FontSizes.size12,
+      fontWeight: A12FontWeights.w500,
       overflow: TextOverflow.ellipsis,
+      letterSpacing: 0.5
     ),
+
+    // bodySmall: TextStyle(
+    //   color: A12Colors.white,
+    //   fontSize: A12FontSizes.size14,
+    //   fontWeight: A12FontWeights.w500,
+    //   overflow: TextOverflow.ellipsis,
+    // ),
+
+    // labelMedium: TextStyle(
+    //   color: A12Colors.white,
+    //   fontSize: A12FontSizes.size10,
+    //   fontWeight: A12FontWeights.w400,
+    //   overflow: TextOverflow.ellipsis,
+    // ),
   );
 }

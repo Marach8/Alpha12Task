@@ -1,0 +1,1 @@
+export 'cart_v_model.dart';

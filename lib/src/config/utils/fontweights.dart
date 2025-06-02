@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AlphaFontWeights{
-  const AlphaFontWeights._sharedInstance();
+class A12FontWeights{
+  const A12FontWeights._sharedInstance();
 
   static const w100 = FontWeight.w100;
 
