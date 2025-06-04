@@ -33,6 +33,8 @@ class A12FontSizes{
 
   static double size32 = 32.0;
 
+  static double size32dot75 = 32.75;
+
   static double size34 = 34.0;
 
   static double size36 = 36.0;

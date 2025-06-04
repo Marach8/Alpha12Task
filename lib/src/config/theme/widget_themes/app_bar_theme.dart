@@ -9,24 +9,14 @@ class A12AppBarTheme{
     centerTitle: true,
     backgroundColor: A12Colors.hexFBFBFB,
     titleTextStyle: TextStyle(
-      color: A12Colors.hex1B1B1B,
-      fontSize: A12FontSizes.size16,
-      fontWeight: A12FontWeights.w500,
+      color: A12Colors.hex334155,
+      fontSize: A12FontSizes.size10,
+      fontWeight: A12FontWeights.w600,
       overflow: TextOverflow.ellipsis,
+      height: 2.8
     ),
   );
 
 
-  static AppBarTheme darkAppBarTheme = AppBarTheme(
-    elevation: 0,
-    scrolledUnderElevation: 0,
-    centerTitle: true,
-    backgroundColor: A12Colors.black,
-    titleTextStyle: TextStyle(
-      color: A12Colors.white,
-      fontSize: A12FontSizes.size16,
-      fontWeight: A12FontWeights.w500,
-      overflow: TextOverflow.ellipsis,
-    ),
-  );
+  //Implement dark Theme here
 }

@@ -4,7 +4,6 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 final GoRouter a12goRouter = GoRouter(
   navigatorKey: navigatorKey,
-  //observers: [EnforceAuthObserver()],
   initialLocation: A12Routes.HOME_SCREEN.addSlash,
   routes: <RouteBase>[
     ShellRoute(
@@ -19,7 +18,7 @@ final GoRouter a12goRouter = GoRouter(
               name: A12Routes.PRODUCT_DETAIL_SCREEN,
               path: A12Routes.PRODUCT_DETAIL_SCREEN.addSlash,
               pageBuilder: (_, GoRouterState st) => A12RouteTransition<A12ProductDetailScreen>(
-                beginOffset: const Offset(0.0, 1.0),
+                duration: 300,
                 child: A12ProductDetailScreen(product: st.extra as Product,)
               ),
             ),
@@ -30,7 +29,6 @@ final GoRouter a12goRouter = GoRouter(
           name: A12Routes.CART_SCREEN,
           path: A12Routes.CART_SCREEN.addSlash,
           pageBuilder: (_, __) => A12RouteTransition<A12CartScreen>(
-            beginOffset: const Offset(0.0, 1.0),
             child: const A12CartScreen()
           ),
         ),
@@ -45,14 +43,15 @@ final GoRouter a12goRouter = GoRouter(
 class A12RouteTransition<T> extends CustomTransitionPage<T> {
   A12RouteTransition({
     required super.child,
-    this.beginOffset
+    this.beginOffset,
+    this.duration
   }) : super(
     transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
       final Animation<Offset> tween =  Tween<Offset>(
-        begin: beginOffset ?? const Offset(1.0, 0.0), 
+        begin: beginOffset ?? const Offset(0, 1), 
         end: Offset.zero
       ).animate(
-        CurvedAnimation(parent: animation, curve: Curves.easeIn)
+        CurvedAnimation(parent: animation, curve: Curves.easeOut)
       );
 
       return SlideTransition(
@@ -60,9 +59,10 @@ class A12RouteTransition<T> extends CustomTransitionPage<T> {
         child: child,
       );
     },
-    reverseTransitionDuration: const Duration(milliseconds: 300),
-    transitionDuration: const Duration(milliseconds: 300),
+    reverseTransitionDuration: Duration(milliseconds: duration ?? 500),
+    transitionDuration: Duration(milliseconds: duration ?? 500),
   );
 
   final Offset? beginOffset;
+  final int? duration;
 }

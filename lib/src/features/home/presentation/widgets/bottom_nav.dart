@@ -1,8 +1,6 @@
 import 'dart:developer' show log;
 
 import 'package:alpha_12_task/src/global_export.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:iconsax/iconsax.dart';
 
 class A12BottomNav extends StatefulWidget {
   const A12BottomNav({
@@ -44,15 +42,15 @@ class _A12BottomNavState extends State<A12BottomNav> {
     A12Strings.FAVORITES, A12Strings.PROFILE
   ];
 
-  final List<IconData> tabs = <IconData>[
-    Iconsax.home, CupertinoIcons.cart,
-    Iconsax.heart, Icons.account_circle_outlined,
+  final List<String> _iconImgs = const <String>[
+    A12ImgStrings.HOME_ICON, A12ImgStrings.CART_ICON,
+    A12ImgStrings.FAVORITE_ICON, A12ImgStrings.PROFILE_ICON
   ];
 
   @override
   void initState() {
     super.initState();
-    _tabKeys = List<GlobalKey>.generate(tabs.length, (_) => GlobalKey());
+    _tabKeys = List<GlobalKey>.generate(_iconImgs.length, (_) => GlobalKey());
   }
 
   @override
@@ -83,13 +81,13 @@ class _A12BottomNavState extends State<A12BottomNav> {
       }
     }
 
-    _tabWidth = _totalTabWidths/tabs.length;
+    _tabWidth = _totalTabWidths/_iconImgs.length;
     screenWidth = context.screenWidth;
 
     final double totalSpacing = screenWidth - _totalTabWidths - 
       (2 * (widget.horizSidePadding + widget.indicatorPadding));
 
-    final double gaps = tabs.length - 1;
+    final double gaps = _iconImgs.length - 1;
     _tabsSpacing = gaps > 0 ? totalSpacing / gaps : 0;
 
     setState(() {
@@ -132,47 +130,77 @@ class _A12BottomNavState extends State<A12BottomNav> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: tabs.map(
-              (IconData tab){
-                final int tabIndex = tabs.indexOf(tab);
+            children: _iconImgs.indexed.map(
+              ((int, String) tabEntry){
+                final int tabIndex = tabEntry.$1;
                 final bool isSelected = _selectedIndex == tabIndex;
+
                 final String label = labels.elementAt(tabIndex);
                 
-                return A12Container(                  
-                  onTap: (){
-                    _updateIndicatorPosition(tabIndex);
+                return A12Container(
+                  //color: Colors.red, 
+                  key: _tabKeys[tabIndex],                
+                  onTap: (){                    
                     if(tabIndex == 1){
                       context.pushNamed(A12Routes.CART_SCREEN);
                     }
+                    else{
+                      _updateIndicatorPosition(tabIndex);
+                    }
                   },
-                  child: Icon(
-                    key: _tabKeys[tabIndex],
-                    tab,
-                    color: isSelected ? Theme.of(context).scaffoldBackgroundColor
-                      : Theme.of(context).textTheme.headlineSmall?.color
+                  child: tabIndex == 1 ?  Stack(
+                    clipBehavior: Clip.none,
+                    children: <Widget>[
+                      ColorFiltered(
+                        colorFilter: ColorFilter.mode(
+                          isSelected ? Theme.of(context).scaffoldBackgroundColor
+                          : Theme.of(context).textTheme.headlineSmall!.color!,
+                          BlendMode.srcATop,                       
+                        ),
+                        child: A12ImgLoader(
+                          imgPath: tabEntry.$2,
+                          height: 24, width: 24,
+                        ),
+                      ),
+
+                      Consumer(
+                        builder: (_, WidgetRef ref, __) {
+                          final List<Product> cartProducts = ref.watch(cartProvider).$1;
+                          if(cartProducts.isEmpty){
+                            return const SizedBox.shrink();
+                          }
+                          return Positioned(
+                            top: -5, right: -10,
+                            child: A12Container(
+                              width: 24.04, height: 24.82, radius: 68.17,
+                              padding: const EdgeInsets.fromLTRB(8.52, 3.41, 8.52, 3.41),
+                              color: A12Colors.hex3C4856,
+                              child: Text(
+                                cartProducts.length.toString(),
+                                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  fontSize: 10.22, height: 1.7, color: A12Colors.white
+                                ),
+                              ),
+                            ),
+                          );
+                        }
+                      )
+                    ],
+                  ) : ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      isSelected ? Theme.of(context).scaffoldBackgroundColor
+                      : Theme.of(context).textTheme.headlineSmall!.color!,
+                      BlendMode.srcATop,                       
+                    ),
+                    child: A12ImgLoader(
+                      imgPath: tabEntry.$2,
+                      height: 24, width: 24,
+                    ),
                   )
                 );
               }
             ).toList()
           ),
-          // Positioned(
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: labels.map(
-          //       (String label){
-          //         final int tabIndex = labels.indexOf(label);
-          //         final bool isSelected = _selectedIndex == tabIndex;                  
-          //         return Text(
-          //           label, textAlign: TextAlign.center,
-          //           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-          //             color: isSelected ? A12Colors.hex60B5FF : null,
-          //             fontWeight: isSelected ? A12FontWeights.w600 : null,
-          //           )
-          //         );
-          //       }
-          //     ).toList()
-          //   ),
-          // ),
         ],
       ),
     );

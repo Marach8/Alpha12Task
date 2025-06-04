@@ -15,19 +15,19 @@ class ProductsModel{
 class Product{
   Product({
     required this.id,
-    this.description,
-    this.image,
-    this.price,
+    required this.description,
+    required this.image,
+    required this.price,
     this.about,
     this.isFavourite = false,
     this.productQuantity = 1,
-    required this.isInStock
+    this.isInStock = true
   });
 
   final String id;
-  final String? image, description;
+  final String image, description;
   final List<String?>? about;
-  final double? price;
+  final double price;
   final bool isInStock;
   bool isFavourite;
   int productQuantity;

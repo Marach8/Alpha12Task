@@ -15,14 +15,5 @@ class A12ThemeData{
   );
 
 
-  static ThemeData darkTheme = ThemeData(
-    useMaterial3: true,
-    fontFamily: A12Strings.IBM_PLEX_SANS,
-    brightness: Brightness.dark,
-    scaffoldBackgroundColor: A12Colors.hex121212,
-    textTheme: A12TextTheme.darkTextTheme,
-    inputDecorationTheme: A12InputDecorationTheme.darkInputDecorationTheme,
-    appBarTheme: A12AppBarTheme.darkAppBarTheme,
-    elevatedButtonTheme: A12ElevatedButtonTheme.darkElevatedButtonTheme,
-  );
+  //Implement dark Theme here
 }

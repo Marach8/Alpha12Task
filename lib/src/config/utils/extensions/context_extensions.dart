@@ -6,7 +6,7 @@ extension ContextExtensions on BuildContext{
   
   double get screenHeight => MediaQuery.sizeOf(this).height;
 
-  bool get inDarkMode => MediaQuery.platformBrightnessOf(this) == Brightness.dark;
+  //bool get inDarkMode => MediaQuery.platformBrightnessOf(this) == Brightness.dark;
 
 
   ProviderContainer get ref => ProviderScope.containerOf(this, listen: false);

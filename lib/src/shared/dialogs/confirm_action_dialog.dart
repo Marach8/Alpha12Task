@@ -32,7 +32,7 @@ Future<bool?> confirmActionDialog({
               style: Theme.of(context).textTheme.labelMedium
             ),
           ),
-          AfriDivider(
+          A12Divider(
             color: Theme.of(context).textTheme.headlineSmall?.color
           ),
           Row(
@@ -45,7 +45,7 @@ Future<bool?> confirmActionDialog({
                   style: Theme.of(context).textTheme.titleLarge
                 ),
               ),
-              AfriDivider(
+              A12Divider(
                 axis: AxisType.vertical, height: 50,
                 color: Theme.of(context).textTheme.headlineSmall?.color
               ),

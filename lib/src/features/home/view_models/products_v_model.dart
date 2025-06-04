@@ -14,11 +14,11 @@ class ProductsNotifier extends StateNotifier<AsyncValue<ProductsModel?>>{
     state = const AsyncLoading<ProductsModel?>();
     try{
       //Fake an API call
-      await Future<void>.delayed(const Duration(seconds: 10));
+      await Future<void>.delayed(const Duration(seconds: 60));
       
       final List<Product> products = <Product>[
         Product(
-          id: '1', isInStock: true,
+          id: '1',
           image: A12ImgStrings.IPHONE,
           description: 'Apple iPhone 16 128GB|Teal',
           price: 700.00,
@@ -28,7 +28,7 @@ class ProductsNotifier extends StateNotifier<AsyncValue<ProductsModel?>>{
           ]
         ),
         Product(
-          id: '2', isInStock: true,
+          id: '2',
           image: A12ImgStrings.MACBOOK,
           description: 'M4 Macbook Air 13" 256GB|Sky blue',
           price: 1000.00,
@@ -38,7 +38,7 @@ class ProductsNotifier extends StateNotifier<AsyncValue<ProductsModel?>>{
           ]
         ),
         Product(
-          id: '3', isInStock: false,
+          id: '3',
           image: A12ImgStrings.GOOGLE_PIXEL,
           description: 'Google Pixel 9A 128GB|Iris',
           price: 499.00,
@@ -48,7 +48,7 @@ class ProductsNotifier extends StateNotifier<AsyncValue<ProductsModel?>>{
           ]
         ),
         Product(
-          id: '4', isInStock: true,
+          id: '4',
           image: A12ImgStrings.EARPOD,
           description: 'Apple Airpods 4 Active Noise Cancellation',
           price: 129.00,
@@ -58,7 +58,7 @@ class ProductsNotifier extends StateNotifier<AsyncValue<ProductsModel?>>{
           ]
         ),
         Product(
-          id: '5', isInStock: true,
+          id: '5',
           image: A12ImgStrings.IPHONE,
           description: 'Apple iPhone 16 128GB|Teal',
           price: 500.00,
@@ -68,7 +68,7 @@ class ProductsNotifier extends StateNotifier<AsyncValue<ProductsModel?>>{
           ]
         ),
         Product(
-          id: '6', isInStock: false,
+          id: '6',
           image: A12ImgStrings.IPHONE,
           description: 'Apple iPhone 16 128GB|Teal',
           price: 850.00,

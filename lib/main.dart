@@ -26,7 +26,7 @@ class A12App extends StatelessWidget {
         // ),
         scaffoldMessengerKey: scaffoldMessengerKey,
         debugShowCheckedModeBanner: false,
-        darkTheme: A12ThemeData.darkTheme,
+        darkTheme: A12ThemeData.lightTheme,
         theme: A12ThemeData.lightTheme,
         routerConfig: a12goRouter,
       ),

@@ -1,7 +1,7 @@
 import '../../../global_export.dart';
 
-final StateNotifierProviderFamily<ProductQuantityNotifier, int, String> 
-  productQuantityProvider = StateNotifierProvider.family<ProductQuantityNotifier, int, String>(
+final AutoDisposeStateNotifierProviderFamily<ProductQuantityNotifier, int, String> 
+  productQuantityProvider = StateNotifierProvider.family.autoDispose<ProductQuantityNotifier, int, String>(
   (Ref ref, String productId){
     final List<Product> cartProducts = ref.read(cartProvider).$1;
     final Product product = cartProducts.firstWhere((Product product) => product.id == productId);
@@ -26,6 +26,11 @@ class ProductQuantityNotifier extends StateNotifier<int>{
 
     if(hasIncreasedInternally){
       state += 1;
+      //Raise a flag that the quantity of a product has changed so the orderSummary will be recalculated
+      final bool initialState = ref.read(boolProvider(A12Strings.PRODUCT_QAUNT_CHANGED));
+      ref.read(
+        boolProvider(A12Strings.PRODUCT_QAUNT_CHANGED).notifier
+      ).state = !initialState;
     }
   }
 
@@ -35,6 +40,11 @@ class ProductQuantityNotifier extends StateNotifier<int>{
       
     if(hasdecreasedInternally){
       state -= 1;
+      //Raise a flag that the quantity of a product has changed so the orderSummary will be recalculated
+      final bool initialState = ref.read(boolProvider(A12Strings.PRODUCT_QAUNT_CHANGED));
+      ref.read(
+        boolProvider(A12Strings.PRODUCT_QAUNT_CHANGED).notifier
+      ).state = !initialState;
     }
   }
 }

@@ -11,13 +11,12 @@ class A12AnnotatedRegion extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool inDarkMode = context.inDarkMode;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
-        systemNavigationBarColor: inDarkMode ? A12Colors.hex121212 : A12Colors.hexFBFBFB,
-        statusBarColor: inDarkMode ? A12Colors.hex121212 : A12Colors.hexFBFBFB,
-        statusBarIconBrightness: inDarkMode ? Brightness.light : Brightness.dark,
-        systemNavigationBarIconBrightness: inDarkMode ? Brightness.light : Brightness.dark,
+        systemNavigationBarColor: A12Colors.hexFBFBFB,
+        statusBarColor: A12Colors.hexFBFBFB,
+        statusBarIconBrightness: Brightness.dark,
+        systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: child
     );

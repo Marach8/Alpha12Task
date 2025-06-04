@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 
-import '../../global_export.dart';
 
 class A12HelperFuncs{
   const A12HelperFuncs._();
@@ -13,30 +12,6 @@ class A12HelperFuncs{
       return 100 + number;
     }
     return number;
-  }
-
-  static setAProvider({
-    BuildContext? context,
-    required StateProvider provider,
-    required dynamic value,
-    WidgetRef? widgetRef,
-    Ref? ref,
-    int? duration
-  }){
-    dynamic reference;
-    if(widgetRef != null){
-      reference = widgetRef;
-    }
-    else if(ref != null){
-      reference = ref;
-    }
-    else{
-      reference = context!.ref;
-    }
-    Future.delayed(
-      Duration(milliseconds: duration ?? 0),
-      () => reference.read(provider.notifier).state = value
-    );
   }
 
 

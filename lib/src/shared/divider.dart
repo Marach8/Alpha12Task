@@ -1,7 +1,7 @@
 import '../global_export.dart';
 
-class AfriDivider extends StatelessWidget {
-  const AfriDivider({
+class A12Divider extends StatelessWidget {
+  const A12Divider({
     super.key,
     this.axis = AxisType.horizontal,
     this.height,

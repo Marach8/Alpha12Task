@@ -1,14 +1,13 @@
 import 'package:alpha_12_task/src/global_export.dart';
 import 'package:flutter/cupertino.dart';
 
-class CartItem extends StatelessWidget {
-  const CartItem({super.key, required this.product});
+class CartItemWidget extends StatelessWidget {
+  const CartItemWidget({super.key, required this.product});
 
   final Product product;
 
   @override
   Widget build(BuildContext context) {
-    final bool inDarkMode = context.inDarkMode;
     return A12Container(
       height: 132, radius: 15,
       width: context.screenWidth,
@@ -60,12 +59,12 @@ class CartItem extends StatelessWidget {
                           children: <Widget>[
                             A12Container(
                               onTap: () => context.ref.read(productQuantityProvider(product.id).notifier).decreaseQuantity(),
-                              color: inDarkMode ?A12Colors.hex1E293B : A12Colors.hexE2E8F0,
+                              color: A12Colors.hexE2E8F0,
                               height: 36, width: 36, radius: 32,
                               padding: const EdgeInsets.all(8),
                               child: Icon(
                                 Icons.remove, size: 13.33,
-                                color: inDarkMode ? A12Colors.hex475569:  A12Colors.hex64748B,
+                                color: A12Colors.hex64748B,
                               ),
                             ),
                             Consumer(
@@ -74,7 +73,7 @@ class CartItem extends StatelessWidget {
                                 return Text(
                                   quantity.toString(),
                                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                    color: inDarkMode ? A12Colors.hexCBD5E1 : A12Colors.hex334155,
+                                    color: A12Colors.hex334155,
                                     height: 1.6
                                   )
                                 );
@@ -82,15 +81,15 @@ class CartItem extends StatelessWidget {
                             ),
                             A12Container(
                               onTap: () => context.ref.read(productQuantityProvider(product.id).notifier).increaseQuantity(),
-                              color: inDarkMode ? A12Colors.black : A12Colors.white,
+                              color: A12Colors.white,
                               height: 36, width: 36, radius: 32,
                               padding: const EdgeInsets.all(8),
                               border: Border.all(
-                                color: inDarkMode ? A12Colors.hex1E293B : A12Colors.hexE2E8F0
+                                color:A12Colors.hexE2E8F0
                               ),
                               child: Icon(
                                 Icons.add, size: 13.33,
-                                color: inDarkMode ? A12Colors.hexCBD5E1:  A12Colors.hex334155,
+                                color: A12Colors.hex334155,
                               ),
                             ),
                           ],
@@ -112,13 +111,13 @@ class CartItem extends StatelessWidget {
                             context.ref.read(cartProvider.notifier).deleteFromCart(product.id);
                           }
                         },
-                        color: inDarkMode ? A12Colors.black : A12Colors.white,
+                        color: A12Colors.white,
                         height: 36, width: 36, radius: 32,
                         padding: const EdgeInsets.all(8),
-                        child: Icon(
-                          CupertinoIcons.delete, size: 16.36,
-                          color: inDarkMode ? A12Colors.hexCCCCCC : A12Colors.hex999999,
-                        ),
+                        child: const A12ImgLoader(
+                          imgPath: A12ImgStrings.DELETE_ICON,
+                          height: 24, width: 24,
+                        )
                       ),
                     ],
                   ),

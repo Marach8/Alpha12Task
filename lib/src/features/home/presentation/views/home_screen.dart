@@ -5,37 +5,23 @@ class A12HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool inDarkMode = context.inDarkMode;
     return Scaffold(
       body: Column(
         children: <Widget>[
           A12Container(
-            padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-            height: 44, color: inDarkMode ? A12Colors.black : A12Colors.white,
-            border: Border(
-              top: BorderSide(
-                color: inDarkMode ? A12Colors.hex1E293B : A12Colors.hexE2E8F0,
+            height: 36,
+            margin: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+            child: A12TextField(
+              prefixIconConstraints: const BoxConstraints(
+                maxWidth: 35.0, maxHeight: 13.0
               ),
-              bottom: BorderSide(
-                color: inDarkMode ? A12Colors.hex303030 : A12Colors.hexF5F5F5,
-              ),
-            ),
-            child: InkWell(
-              onTap: (){},
-              child: Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.keyboard_arrow_left,
-                    color: inDarkMode ? A12Colors.hex475569 : A12Colors.hex64748B,
-                  ),
-                  Text(
-                    A12Strings.TECHNOLOGY,
-                    style: Theme.of(context).textTheme.headlineSmall
-                  )
-                ]
-              ),
+              prefixIcon: const A12ImgLoader(imgPath: A12ImgStrings.SEARCH_ICON),
+              //call search function in the onchanged
+              onChanged: (String text){},
+              hintText: A12Strings.SEARCH,
             )
           ),
+          const BackButtonWidget(text: A12Strings.TECHNOLOGY, shouldPop: false,),
 
           Expanded(
             child: Consumer(
@@ -51,21 +37,11 @@ class A12HomeScreen extends StatelessWidget {
                 return CustomScrollView(
                   physics: const BouncingScrollPhysics(),
                   slivers: <Widget>[
-                    SliverPadding(
-                      padding: const EdgeInsets.only(right: 16),
-                      sliver: SliverPersistentHeader(
-                        delegate: A12SliverHeader(
-                          maxExt: 46, minExt: 46,
-                          child: Center(
-                            child: hasData ? Text(
-                              asyncProducts.value?.productsGroupName ?? '',
-                              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                fontWeight: A12FontWeights.w500
-                              ),
-                            ) : const A12Shimmer(height: 20, radius: 5,),
-                          )
-                        )
-                      ),
+                    SliverPersistentHeader(
+                      delegate: A12SliverHeader(
+                        maxExt: 46, minExt: 46,
+                        child: const _ProductsGroupName()
+                      )
                     ),
                     SliverPadding(
                       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -95,6 +71,32 @@ class A12HomeScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: const A12BottomNav()
+    );
+  }
+}
+
+
+
+class _ProductsGroupName extends ConsumerWidget {
+  const _ProductsGroupName();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final AsyncValue<ProductsModel?> asyncProducts = ref.watch(productsProvider);
+    final bool hasData = asyncProducts is AsyncData;
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: hasData ? Text(
+          textAlign: TextAlign.left,
+          asyncProducts.value?.productsGroupName ?? '', maxLines: 2,
+          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            fontWeight: A12FontWeights.w500
+          ),
+        ) : const A12Shimmer(height: 20, radius: 5,),
+      ),
     );
   }
 }

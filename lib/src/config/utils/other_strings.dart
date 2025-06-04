@@ -16,6 +16,7 @@ class A12Strings{
   static const String SEARCH = 'Search';
   static const String HOME = 'Home';
   static const String CART = 'Cart';
+  static const String BACK_BTN = 'Back Button';
   static const String IN_STOCK = 'In stock';
   static const String OUT_OF_STOCK = 'Out of stock';
   static const String FAVORITES = 'Favorites';
@@ -30,4 +31,5 @@ class A12Strings{
   static const String CART_IS_EMPTY = 'Oops! seems you currently have no items in your cart...';
   static const String ITEM_EXISTS_ALREADY = 'This product is already in your cart!';
   static const String ADDED_CART = 'Item has been added to cart';
+  static const String PRODUCT_QAUNT_CHANGED = 'A particular product quantity has changed';
 }

@@ -7,24 +7,23 @@ class A12Shimmer extends StatelessWidget {
     this.height,
     this.width,
     this.radius,
-    this.baseColor,
-    this.highlightColor,
+    this.color,
     this.margin,
   });
 
   final double? height, width, radius;
   final EdgeInsetsGeometry? margin;
-  final Color? highlightColor, baseColor;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: baseColor ?? A12Colors.white.withValues(alpha: 0.7),
-      highlightColor: highlightColor ?? A12Colors.hex9A9A9A,
+      baseColor: (color ?? A12Colors.hex999999).withValues(alpha: 0.8),
+      highlightColor: (color ?? A12Colors.hex999999).withValues(alpha: 0.7),
       child: A12Container(
         margin: margin,
-        height: height ?? 150, radius: radius ?? 10,
-        color: baseColor ?? A12Colors.hexBCBCBC,
+        height: height ?? 40, radius: radius ?? 8,
+        color: (color ?? A12Colors.hex999999).withValues(alpha: 0.8),
         width: width ?? context.screenWidth,
       ),
     );

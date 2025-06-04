@@ -7,38 +7,37 @@ class ProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool inDarkMode = context.inDarkMode;
-    return A12Container(
-      onTap: () => context.pushNamed(
-        A12Routes.PRODUCT_DETAIL_SCREEN,
-        extra: product,
-      ),
-      height: 229.34,
-      color: inDarkMode ? A12Colors.black: A12Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: Hero(
-              tag: product!.id,
+    return Hero(
+      tag: product!.id,
+      child: A12Container(
+        onTap: () => context.pushNamed(
+          A12Routes.PRODUCT_DETAIL_SCREEN,
+          extra: product,
+        ),
+        height: 229.34,
+        color: A12Colors.white,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
               child: A12ImgLoader(
                 imgPath: product?.image ?? '',
                 boxFit: BoxFit.cover,
-                width: double.infinity,
-              ),
-            )
-          ),
-          Text(
-            product?.description ?? '', maxLines: 2,
-            style: Theme.of(context).textTheme.titleSmall
-          ),
-          Text(
-            '\$${(product?.price ?? 0)}',
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontSize: A12FontSizes.size16
-            )
-          ),
-        ],
+                width: context.screenWidth
+              )
+            ),
+            Text(
+              product?.description ?? '', maxLines: 2,
+              style: Theme.of(context).textTheme.titleSmall
+            ),
+            Text(
+              '\$${(product?.price ?? 0)}',
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                fontSize: A12FontSizes.size16
+              )
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -50,17 +49,15 @@ class ProductShimmerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bool inDarkMode = context.inDarkMode;
     return LayoutBuilder(
       builder: (_, BoxConstraints kst) {
         return A12Container(
-          height: 229.34,
-          color: inDarkMode ? A12Colors.black: A12Colors.white,
+          height: 229.34, color: A12Colors.white,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Expanded(
-                child: A12Shimmer(radius: 5,width: kst.maxWidth),
+                child: A12Shimmer(radius: 5, width: kst.maxWidth,),
               ),
               const SizedBox(height: 10,),
               A12Shimmer(

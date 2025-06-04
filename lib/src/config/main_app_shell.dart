@@ -46,39 +46,17 @@ class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
             const A12ImgLoader(imgPath: A12ImgStrings.NOTIF_ICON),
           ],
           bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(91),
+            preferredSize: const Size.fromHeight(35),
             child: A12Container(
-              margin: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-              height: 91,
-              child: Column(
-                children: <Widget>[
-                  Expanded(
-                    child: Consumer(
-                      builder: (_, WidgetRef ref, __) {
-                        return Text(
-                          'Umezurike Road, Oyo State',
-                          style: Theme.of(context).textTheme.titleLarge
-                        );
-                      }
-                    ),
-                  ),
-                  Consumer(
-                    builder: (_, WidgetRef ref, __) {
-                      return A12Container(
-                        height: 36,
-                        margin: const EdgeInsets.only(bottom: 16),
-                        child: A12TextField(
-                          prefixIconConstraints: const BoxConstraints(
-                            maxWidth: 35.0, maxHeight: 13.0
-                          ),
-                          prefixIcon: const A12ImgLoader(imgPath: A12ImgStrings.SEARCH_ICON),
-                          controller: _cntrl,
-                          hintText: A12Strings.SEARCH,
-                        )
-                      );
-                    }
-                  ),
-                ],
+              margin: const EdgeInsets.fromLTRB(16, 0, 16, 15),
+              height: 20,
+              child: Consumer(
+                builder: (_, WidgetRef ref, __) {
+                  return Text(
+                    'Umezurike Road, Oyo State',
+                    style: Theme.of(context).textTheme.titleLarge
+                  );
+                }
               ),
             ),
           )
