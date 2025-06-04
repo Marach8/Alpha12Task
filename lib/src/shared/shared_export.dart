@@ -12,3 +12,4 @@ export 'app_bar.dart';
 export 'image_loader.dart';
 export 'animated_slide.dart';
 export 'back_button.dart';
+export 'animated_crossfade.dart';

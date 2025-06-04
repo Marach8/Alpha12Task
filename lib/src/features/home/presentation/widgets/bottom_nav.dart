@@ -1,4 +1,5 @@
 import 'dart:developer' show log;
+import 'dart:io' show Platform;
 
 import 'package:alpha_12_task/src/global_export.dart';
 
@@ -108,11 +109,16 @@ class _A12BottomNavState extends State<A12BottomNav> {
   @override
   Widget build(BuildContext context) {
     return A12Container(
-      height: kBottomNavigationBarHeight,
+      height: 90,
       width: context.screenWidth,
-      padding: EdgeInsets.symmetric(horizontal: (widget.horizSidePadding + widget.indicatorPadding)),
-      //color: Colors.red,
-      color: Theme.of(context).scaffoldBackgroundColor,
+      padding: EdgeInsets.fromLTRB(
+        (widget.horizSidePadding + widget.indicatorPadding),
+        15, 
+        (widget.horizSidePadding + widget.indicatorPadding),
+        0
+      ),
+      alignment: Alignment.topCenter,
+      color: A12Colors.white.withValues(alpha: 0.95),
       child: Stack(
         clipBehavior: Clip.none,
         alignment: Alignment.center,
@@ -165,10 +171,14 @@ class _A12BottomNavState extends State<A12BottomNav> {
 
                       Consumer(
                         builder: (_, WidgetRef ref, __) {
-                          final List<Product> cartProducts = ref.watch(cartProvider).$1;
-                          if(cartProducts.isEmpty){
+                          final List<Product> cartProducts = ref.watch(
+                            cartProvider.select(CartNotifier.listen2CartProducts),
+                          );
+
+                          if (cartProducts.isEmpty) {
                             return const SizedBox.shrink();
                           }
+
                           return Positioned(
                             top: -5, right: -10,
                             child: A12Container(
@@ -178,12 +188,12 @@ class _A12BottomNavState extends State<A12BottomNav> {
                               child: Text(
                                 cartProducts.length.toString(),
                                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                  fontSize: 10.22, height: 1.7, color: A12Colors.white
+                                  fontSize: 10.22, height: 1.7, color: A12Colors.white,
                                 ),
                               ),
                             ),
                           );
-                        }
+                        },
                       )
                     ],
                   ) : ColorFiltered(

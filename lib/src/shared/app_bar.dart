@@ -29,7 +29,6 @@ class A12AppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0.0,
       centerTitle: centerTitle ?? true,
       leading: Padding(

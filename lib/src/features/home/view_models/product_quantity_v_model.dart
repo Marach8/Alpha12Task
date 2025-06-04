@@ -3,7 +3,7 @@ import '../../../global_export.dart';
 final AutoDisposeStateNotifierProviderFamily<ProductQuantityNotifier, int, String> 
   productQuantityProvider = StateNotifierProvider.family.autoDispose<ProductQuantityNotifier, int, String>(
   (Ref ref, String productId){
-    final List<Product> cartProducts = ref.read(cartProvider).$1;
+    final List<Product> cartProducts = ref.read(cartProvider.notifier).getProductsInCart();
     final Product product = cartProducts.firstWhere((Product product) => product.id == productId);
     final int currentQuantity = product.productQuantity;
     return ProductQuantityNotifier(ref, productId, currentQuantity);

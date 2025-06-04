@@ -6,7 +6,7 @@ class A12ProductDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    bool isFavorite = product.isFavourite;
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -14,7 +14,7 @@ class A12ProductDetailScreen extends StatelessWidget {
           const BackButtonWidget(text: A12Strings.GO_BACK,),
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+              padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
               physics: const BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,21 +28,58 @@ class A12ProductDetailScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Expanded(
-                            child: A12ImgLoader(
-                              imgPath: product.image ?? '',
-                              boxFit: BoxFit.cover,
-                              width: context.screenWidth,
+                            child: LayoutBuilder(
+                              builder: (_, BoxConstraints kst) {
+                                return Stack(
+                                  children: <Widget>[
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: A12ImgLoader(
+                                        imgPath: product.image,   
+                                        height: kst.maxHeight,
+                                        boxFit: BoxFit.cover,
+                                        width: kst.maxWidth
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 10, right: 10,
+                                      child: StatefulBuilder(
+                                        builder: (_,  Function(void Function()) setter) {
+                                          return A12Container(
+                                            duration: 300, color: A12Colors.white,
+                                            onTap: () => setter(
+                                              (){
+                                                isFavorite = !isFavorite;
+                                                product.isFavourite = isFavorite;
+                                              }
+                                            ),
+                                            height: 44, width: 44, radius: 30,
+                                            padding: EdgeInsets.all(isFavorite ? 11 : 10),
+                                            child: A12AnimatedXFade(
+                                              selectedIndex: isFavorite ? 1 : 0,
+                                              children: <Widget>[
+                                                const A12ImgLoader(imgPath: A12ImgStrings.FAVORITE_ICON,),
+                                                const A12ImgLoader(imgPath: A12ImgStrings.FAVORITE_RED_ICON,),
+                                              ],
+                                            )
+                                          );
+                                        }
+                                      ),
+                                    )
+                                  ],
+                                );
+                              }
                             ),
                           ),
                           const SizedBox(height: 10,),
                           Text(
-                            product.description ?? '', maxLines: 2,
+                            product.description, maxLines: 2,
                             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               fontSize: A12FontSizes.size17
                             )
                           ),
                           Text(
-                            '\$${(product.price ?? 0)}',
+                            '\$${product.price}',
                             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               fontSize: A12FontSizes.size32dot75
                             )
@@ -64,7 +101,7 @@ class A12ProductDetailScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           A12Container(
-                            height:3, width: 3, radius: 2,
+                            height: 3, width: 3, radius: 2,
                             margin: const EdgeInsets.fromLTRB(0, 5, 5, 0),
                             color: A12Colors.hex999999,
                           ),
@@ -85,27 +122,7 @@ class A12ProductDetailScreen extends StatelessWidget {
         ],
       ),
 
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 5, 16, 10),
-        child: A12ElevatedBtn(
-          btnTitle: A12Strings.ADD_2_CART,
-          onPressed: ()async{
-            String? errorMsg;
-            final bool isAdded2Cart = await context.ref.read(cartProvider.notifier).addToCart(product);
-
-            if(context.mounted){
-              errorMsg = context.ref.read(
-                cartProvider.select(((List<Product>, String?) state) => state.$2)
-              );
-              showAppNotification(
-                context: context,
-                icon: Icon(Icons.check_circle, color: A12Colors.hex10B981,),
-                text: errorMsg ?? ''
-              );
-            }
-          }
-        ),
-      )
+      bottomNavigationBar: Add2CartBtn(product: product)
     );
   }
 }

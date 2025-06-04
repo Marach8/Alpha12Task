@@ -13,8 +13,8 @@ class ProductsNotifier extends StateNotifier<AsyncValue<ProductsModel?>>{
   Future<void> fetchProducts()async{
     state = const AsyncLoading<ProductsModel?>();
     try{
-      //Fake an API call
-      await Future<void>.delayed(const Duration(seconds: 60));
+      //Fake an API call to fetch products
+      await Future<void>.delayed(const Duration(seconds: 2));
       
       final List<Product> products = <Product>[
         Product(

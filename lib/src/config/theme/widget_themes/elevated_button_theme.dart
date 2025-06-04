@@ -8,6 +8,8 @@ class A12ElevatedButtonTheme{
       elevation: 0,
       foregroundColor: A12Colors.white,
       backgroundColor: A12Colors.hex60B5FF,
+      disabledBackgroundColor: A12Colors.hexE2E8F0,
+      disabledForegroundColor: A12Colors.hex64748B,
       textStyle: TextStyle(
         fontSize: A12FontSizes.size14,
         fontWeight: A12FontWeights.w700,

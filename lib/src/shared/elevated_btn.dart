@@ -32,3 +32,4 @@ class A12ElevatedBtn extends StatelessWidget {
   }
 }
 
+enum ButtonState { pressed, active, disabled }

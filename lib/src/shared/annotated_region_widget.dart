@@ -13,8 +13,8 @@ class A12AnnotatedRegion extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
-        systemNavigationBarColor: A12Colors.hexFBFBFB,
-        statusBarColor: A12Colors.hexFBFBFB,
+        systemNavigationBarColor: A12Colors.white,
+        statusBarColor: A12Colors.white,
         statusBarIconBrightness: Brightness.dark,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),

@@ -7,7 +7,7 @@ class A12AppBarTheme{
     elevation: 0,
     scrolledUnderElevation: 0,
     centerTitle: true,
-    backgroundColor: A12Colors.hexFBFBFB,
+    backgroundColor: A12Colors.white,
     titleTextStyle: TextStyle(
       color: A12Colors.hex334155,
       fontSize: A12FontSizes.size10,

@@ -21,7 +21,8 @@ class Product{
     this.about,
     this.isFavourite = false,
     this.productQuantity = 1,
-    this.isInStock = true
+    this.isInStock = true,
+    this.isInCart = false,
   });
 
   final String id;
@@ -29,7 +30,7 @@ class Product{
   final List<String?>? about;
   final double price;
   final bool isInStock;
-  bool isFavourite;
+  bool isFavourite, isInCart;
   int productQuantity;
 }
 

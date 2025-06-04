@@ -6,11 +6,10 @@ class A12CartScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final List<Product> cartProducts = ref.watch(
-      cartProvider.select(((List<Product>, String?) state) => state.$1)
+      cartProvider.select(CartNotifier.listen2CartProducts)
     );
 
     return Scaffold(
-      //backgroundColor: Colors.white.withValues(alpha: 0.1),
       body: Column(
         children: <Widget>[
           const BackButtonWidget(text: A12Strings.UR_CART,),
@@ -56,11 +55,14 @@ class _CheckoutBtn extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final ({int subtotal, int shipping, int total}) orderSummary = ref.watch(orderSummaryProvider);
+    final ({int subtotal, int shipping, int total}) 
+      orderSummary = ref.watch(orderSummaryProvider);
     return A12AnimatedSlide(
       endCondition: orderSummary.subtotal == 0,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 5, 16, 10),
+      child: Container(
+        height: 94, color: A12Colors.white.withValues(alpha: 0.9),
+        alignment: Alignment.topCenter,
+        padding: const EdgeInsets.fromLTRB(16, 10, 16, 00),
         child: A12ElevatedBtn(
           btnTitle: '${A12Strings.CHECKOUT} (\$${orderSummary.total})',
           onPressed: (){}

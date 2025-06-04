@@ -23,6 +23,8 @@ class A12Colors {
   
   static Color get hex60B5FF => const Color(0XFF60B5FF);
 
+  static Color get hex078CFF => const Color(0XFF078CFF);
+
   static Color get hex49454F => const Color(0XFF49454F);
 
   static Color get hex999999 => const Color(0XFF999999);

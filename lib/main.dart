@@ -1,10 +1,16 @@
+import 'package:device_preview/device_preview.dart' show DevicePreview;
+
 import 'src/global_export.dart';
 
 void main() {
   // WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   // FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  runApp(const ProviderScope(child: A12App()));
+  runApp(
+    ProviderScope(
+      child: const A12App()
+    )
+  );
 }
 
 
