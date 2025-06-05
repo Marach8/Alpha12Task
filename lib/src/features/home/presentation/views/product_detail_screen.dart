@@ -7,6 +7,19 @@ class A12ProductDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isFavorite = product.isFavourite;
+
+    context.ref.listen(
+      cartProvider,
+      (_, A12ApiState<List<Product>> next){
+        if(context.mounted && (next is Success<List<Product>>)){
+          showAppNotification(
+            context: context,
+            text: next.message ?? '', success: true
+          );
+        }
+      }
+    );
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,7 +92,7 @@ class A12ProductDetailScreen extends StatelessWidget {
                             )
                           ),
                           Text(
-                            '\$${product.price}',
+                            '\$${product.price.toStringAsFixed(2)}',
                             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                               fontSize: A12FontSizes.size32dot75
                             )

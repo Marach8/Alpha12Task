@@ -9,6 +9,7 @@ class Add2CartBtn extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Color bgColor = A12Colors.hex078CFF;
     Color fgColor = A12Colors.white;
+    int duration = 0;
     bool shouldAdd = true;
 
     final bool isInCart = product.isInCart;
@@ -28,6 +29,7 @@ class Add2CartBtn extends ConsumerWidget {
       case Add2CartState.isAdding:
         //Button in "While pressing" (loading) state
         bgColor = A12Colors.hex60B5FF;
+        duration = 500;
         shouldAdd = false;
         break;
 
@@ -35,6 +37,7 @@ class Add2CartBtn extends ConsumerWidget {
         //Button in disabled state
         bgColor = A12Colors.hexE2E8F0;
         fgColor = A12Colors.hex64748B;
+        duration = 300;
         shouldAdd = false;
         break;
 
@@ -50,23 +53,16 @@ class Add2CartBtn extends ConsumerWidget {
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 30,),
       child: A12Container(
         clipBehavior: Clip.hardEdge,
-        onTap: ()async{
+        onTap: (){
           if(!shouldAdd){
             return;
           }
-    
-          final String msg = await context.ref.read(cartProvider.notifier).addToCart(product);
-      
-          if(context.mounted){
-            showAppNotification(
-              context: context,
-              icon: Icon(Icons.check_circle, color: A12Colors.hex10B981,),
-              text: msg
-            );
-          }
+          context.ref.read(cartProvider.notifier).addToCart(product);
         },
         height: 40, radius: 8,
         color: bgColor,
+        duration: duration,
+        curve: Curves.easeOut,
         child: Center(
           child: Text(
             isInCart || state == Add2CartState.isAdded

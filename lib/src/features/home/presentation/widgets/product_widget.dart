@@ -31,7 +31,7 @@ class ProductWidget extends StatelessWidget {
               style: Theme.of(context).textTheme.titleSmall
             ),
             Text(
-              '\$${(product?.price ?? 0)}',
+              '\$${(product?.price ?? 0).toStringAsFixed(2)}',
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontSize: A12FontSizes.size16
               )

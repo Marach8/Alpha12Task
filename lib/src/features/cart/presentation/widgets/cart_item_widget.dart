@@ -1,5 +1,4 @@
 import 'package:alpha_12_task/src/global_export.dart';
-import 'package:flutter/cupertino.dart';
 
 class CartItemWidget extends StatelessWidget {
   const CartItemWidget({super.key, required this.product});
@@ -17,7 +16,7 @@ class CartItemWidget extends StatelessWidget {
       child: Row(
         children: <Widget>[
           A12ImgLoader(
-            imgPath: product.image!,
+            imgPath: product.image,
             height: 132, width: 106.7,   
           ),
           const SizedBox(width: 10,),
@@ -28,14 +27,14 @@ class CartItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  product.description ?? '',
+                  product.description,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: A12FontWeights.w400,
                     height: 1.6
                   )
                 ),
                 Text(
-                  '\$${product.price ?? 0}',
+                  '\$${product.price.toStringAsFixed(2)}',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontSize: A12FontSizes.size17,
                     height: 1.9
@@ -44,7 +43,7 @@ class CartItemWidget extends StatelessWidget {
                 Text(
                   product.isInStock ? A12Strings.IN_STOCK : A12Strings.OUT_OF_STOCK,
                   style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: product.isInStock ? null : A12Colors.red
+                    color: product.isInStock ? null : A12Colors.hexFF2D55
                   )
                 ),
                 

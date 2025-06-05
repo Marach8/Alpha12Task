@@ -26,7 +26,7 @@ class CartNotifier extends StateNotifier<A12ApiState<List<Product>>>{
     };
   }
 
-  Future<String> addToCart(Product product) async {
+  Future<String?> addToCart(Product product) async {
     final List<Product> currentCartItems = getProductsInCart();
 
     state = A12ApiState<List<Product>>.loading();

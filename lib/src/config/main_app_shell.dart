@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+import 'dart:ui' show PathMetrics, PathMetric;
+
 import '../global_export.dart';
 
 class A12MainAppShell extends ConsumerStatefulWidget {
@@ -12,12 +15,10 @@ class A12MainAppShell extends ConsumerStatefulWidget {
 }
 
 class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
-  late final TextEditingController _cntrl;
 
   @override 
   void initState(){
     super.initState();
-    _cntrl = TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => _initialize()
     );
@@ -29,7 +30,6 @@ class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
 
   @override
   void dispose(){
-    _cntrl.dispose();
     super.dispose();
   }
 
@@ -38,6 +38,26 @@ class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
     return A12AnnotatedRegion(
       child: Scaffold(
         appBar: A12AppBar(
+          leadingWidth: 56,
+          leading: A12Container(
+            color: A12Colors.hex93C5FD, height: 28,
+            margin: const EdgeInsets.all(0.5),
+            child: CustomPaint(
+              painter: _DottedBorderPainter(),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(4.38, 0, 4.38, 0),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    'Full Logo',
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontSize: 10.5, height: 1.3, color: A12Colors.hex2563EB
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           title: Text(
             A12Strings.DELIVERY_ADDRS.toUpperCase(),
             style: Theme.of(context).textTheme.titleMedium
@@ -62,7 +82,59 @@ class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
           )
         ),
         body: widget.body,
+        resizeToAvoidBottomInset: false,
       ),
     );
   }
+}
+
+
+
+
+
+
+
+class _DottedBorderPainter extends CustomPainter {
+  _DottedBorderPainter();
+
+  final Color color = A12Colors.hex2563EB;
+  final double strokeWidth = 1;
+  final double dashLength = 2;
+  final double gapLength = 2.5;
+  final BorderRadius? borderRadius = null;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Paint paint = Paint()
+      ..color = color
+      ..strokeWidth = strokeWidth
+      ..style = PaintingStyle.stroke;
+
+    final Rect rect = Offset.zero & size;
+
+    Path path;
+
+    if (borderRadius != null && borderRadius != BorderRadius.zero) {
+      // If borderRadius is provided, use RRect (rounded rectangle)
+      path = Path()..addRRect(borderRadius!.toRRect(rect));
+    } else {
+      // Otherwise, use a simple rectangle
+      path = Path()..addRect(rect);
+    }
+
+    final PathMetrics pathMetrics = path.computeMetrics();
+
+    for (final PathMetric pathMetric in pathMetrics) {
+      double currentLength = 0.0;
+      while (currentLength < pathMetric.length) {
+        final double end = math.min(currentLength + dashLength, pathMetric.length);
+        final Path segment = pathMetric.extractPath(currentLength, end);
+        canvas.drawPath(segment, paint);
+        currentLength = end + gapLength;
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(_) => false;
 }

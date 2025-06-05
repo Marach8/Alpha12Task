@@ -7,7 +7,7 @@ class A12Colors {
 
   static Color get white => Colors.white;
 
-  static Color get red => Colors.red;
+  static Color get hexFF2D55 => const Color(0XFFFF2D55);
 
   static Color get transparent => Colors.transparent;
   
@@ -35,4 +35,7 @@ class A12Colors {
 
   static Color get hex3C4856 => const Color(0XFF3C4856);
 
+  static Color get hex93C5FD => const Color(0XFF93C5FD);
+
+  static Color get hex2563EB => const Color(0XFF2563EB);
 }

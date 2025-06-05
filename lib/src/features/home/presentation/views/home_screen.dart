@@ -70,7 +70,8 @@ class A12HomeScreen extends StatelessWidget {
           )
         ],
       ),
-      bottomNavigationBar: const A12BottomNav()
+      bottomNavigationBar: const A12BottomNav(),
+      resizeToAvoidBottomInset: false,
     );
   }
 }

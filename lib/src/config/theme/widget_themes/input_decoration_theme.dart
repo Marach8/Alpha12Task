@@ -17,7 +17,7 @@ class A12InputDecorationTheme{
       height: 1.43
     ),
     errorStyle: TextStyle(
-      color: A12Colors.red.withValues(alpha: 0.6),
+      color: A12Colors.hexFF2D55.withValues(alpha: 0.6),
       fontSize: A12FontSizes.size12,
       fontWeight: A12FontWeights.w400,
       overflow: TextOverflow.ellipsis,
@@ -32,7 +32,7 @@ class A12InputDecorationTheme{
       borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(
         width: 0.5,
-        color: A12Colors.red.withValues(alpha: 0.6)
+        color: A12Colors.hexFF2D55.withValues(alpha: 0.6)
       )
     ),
 
@@ -40,7 +40,7 @@ class A12InputDecorationTheme{
       borderRadius: BorderRadius.circular(5),
       borderSide: BorderSide(
         width: 0.8,
-        color: A12Colors.red.withValues(alpha: 0.8)
+        color: A12Colors.hexFF2D55.withValues(alpha: 0.8)
       )
     ),
 

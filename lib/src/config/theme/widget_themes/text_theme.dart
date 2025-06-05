@@ -34,6 +34,14 @@ class A12TextTheme{
       overflow: TextOverflow.ellipsis,
     ),
 
+    bodyLarge: TextStyle(
+      color: A12Colors.hex334155,
+      fontSize: A12FontSizes.size14,
+      fontWeight: A12FontWeights.w600,
+      overflow: TextOverflow.ellipsis,
+      height: 1.43
+    ),
+
     bodyMedium: TextStyle(
       color: A12Colors.hex999999,
       fontSize: A12FontSizes.size14,
