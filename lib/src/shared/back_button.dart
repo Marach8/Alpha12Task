@@ -17,6 +17,7 @@ class BackButtonWidget extends StatelessWidget {
       child: A12Container(
         padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
         height: 44, color: A12Colors.white,
+        alignment: Alignment.centerLeft,
         border: Border(
           top: BorderSide(color: A12Colors.hexE2E8F0),
           bottom: BorderSide(color: A12Colors.hexF5F5F5),
@@ -24,6 +25,7 @@ class BackButtonWidget extends StatelessWidget {
         child: InkWell(
           onTap: shouldPop ? () => context.pop() : null,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Icon(
                 Icons.keyboard_arrow_left,

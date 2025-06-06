@@ -72,12 +72,19 @@ class _A12RouteTransition<T> extends CustomTransitionPage<T> {
 class _AnimateAppBarObserver extends NavigatorObserver {
   _AnimateAppBarObserver();
 
+  bool _didNavigateScreens(Route<dynamic> route, Route<dynamic>? previousRoute) {
+    final bool routeChanged = route.settings.name != previousRoute?.settings.name;
+    final bool routesAreScreens = route is PageRoute && (previousRoute == null || previousRoute is PageRoute);
+    return routeChanged && routesAreScreens;
+  }
+
+
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPop(route, previousRoute);
     final BuildContext? context = route.navigator?.context;
-    final bool routeChanged = route.settings.name != previousRoute?.settings.name;
-    if (context != null && context.mounted && routeChanged) {
+    
+    if (context != null && context.mounted && _didNavigateScreens(route, previousRoute)) {
       Future<void>.delayed(
         Duration.zero,
         (){
@@ -93,12 +100,12 @@ class _AnimateAppBarObserver extends NavigatorObserver {
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
     super.didPush(route, previousRoute);
     final BuildContext? context = route.navigator?.context;
-    final bool routeChanged = route.settings.name != previousRoute?.settings.name;
-    if (context != null && context.mounted && routeChanged) {
+    
+    if (context != null && context.mounted && _didNavigateScreens(route, previousRoute)) {
       Future<void>.delayed(
         Duration.zero,
         (){
-          if(context.mounted){
+          if(context.mounted && previousRoute != null){
             context.ref.read(boolProvider(A12Strings.ANIM_APPBAR).notifier).state = true;
           }
         }

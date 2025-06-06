@@ -62,11 +62,11 @@ class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
           actions: <Widget>[
             Consumer(
               builder: (_, WidgetRef ref, __) {
-                final bool shouldNotPad = ref.watch(boolProvider(A12Strings.ANIM_APPBAR));
+                final bool addPad = ref.watch(boolProvider(A12Strings.ANIM_APPBAR));
                 return A12Container(
                   duration: 300,
                   margin: EdgeInsets.only(
-                    right: shouldNotPad ? 0 : 16
+                    right: addPad ? 0 : 16
                   ),
                   child: const A12ImgLoader(imgPath: A12ImgStrings.NOTIF_ICON)
                 );
@@ -77,9 +77,9 @@ class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
             preferredSize: const Size.fromHeight(35),
             child: Consumer(
               builder: (_, WidgetRef ref, __) {
-                final bool shouldNotPad = ref.watch(boolProvider(A12Strings.ANIM_APPBAR));
+                final bool addPad = ref.watch(boolProvider(A12Strings.ANIM_APPBAR));
                 return A12Container(
-                  margin: EdgeInsets.fromLTRB(16, 0, shouldNotPad ? 0 : 16, 15),
+                  margin: EdgeInsets.fromLTRB(16, 0, addPad ? 0 : 16, 15),
                   height: 20, duration: 300,
                   child: Text(
                     'Umezurike Road, Oyo State',
