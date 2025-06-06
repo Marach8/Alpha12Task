@@ -3,20 +3,18 @@ import 'package:flutter/material.dart';
 class A12FontWeights{
   const A12FontWeights._sharedInstance();
 
-  static const w100 = FontWeight.w100;
+  static const FontWeight w100 = FontWeight.w100;
 
-  static const w200 = FontWeight.w200;
+  static const FontWeight w200 = FontWeight.w200;
 
-  static const w300 = FontWeight.w300;
+  static const FontWeight w300 = FontWeight.w300;
 
-  static const w400 = FontWeight.w400;
+  static const FontWeight w400 = FontWeight.w400;
 
-  static const w500 = FontWeight.w500;
+  static const FontWeight w500 = FontWeight.w500;
 
-  static const w600 = FontWeight.w600;
+  static const FontWeight w600 = FontWeight.w600;
 
-  static const w700 = FontWeight.w700;
-
-  static const w800 = FontWeight.w800;
+  static const FontWeight w700 = FontWeight.w700;
   
 }

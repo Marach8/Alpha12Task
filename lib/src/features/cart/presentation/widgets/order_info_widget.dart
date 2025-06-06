@@ -1,13 +1,11 @@
-import 'package:alpha_12_task/src/config/config_export.dart';
 import 'package:alpha_12_task/src/global_export.dart';
-import 'package:flutter/material.dart';
 
 class OrderInfoWidget extends StatelessWidget {
   const OrderInfoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final List<String> orderInfoKeys = [
+    final List<String> orderInfoKeys = <String>[
       A12Strings.SUB_TOTAL,
       A12Strings.SHIPPING,
       A12Strings.TOTAL
@@ -18,7 +16,7 @@ class OrderInfoWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: <Widget>[
           Text(
             A12Strings.ORDER_INFO,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(

@@ -16,6 +16,7 @@ class A12Strings{
   static const String SEARCH = 'Search';
   static const String HOME = 'Home';
   static const String CART = 'Cart';
+  static const String ANIM_APPBAR = 'Animate app bar';
   static const String BACK_BTN = 'Back Button';
   static const String IN_STOCK = 'In stock';
   static const String OUT_OF_STOCK = 'Out of stock';
@@ -25,6 +26,8 @@ class A12Strings{
   static const String PROCEED = 'Proceed';
   static const String REMOVE_4RM_CART = 'Remove from cart';
   static const String CANCEL = 'Cancel';
+  static const String NO_PRODUCTS = 'Products under this category is currently empty';
+  static const String LABELS_MUST_MATCH_ICONS = 'If labels is provided, it must match the number of icons!';
   static const String ADD_2_CART = 'Add to cart';
   static const String ADDED_2_CART = 'Added to cart';
   static const String ITEM_NOT_FOUND = 'This item was not found in your cart!';

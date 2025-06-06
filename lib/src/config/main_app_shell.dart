@@ -1,6 +1,3 @@
-import 'dart:math' as math;
-import 'dart:ui' show PathMetrics, PathMetric;
-
 import '../global_export.dart';
 
 class A12MainAppShell extends ConsumerStatefulWidget {
@@ -43,7 +40,7 @@ class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
             color: A12Colors.hex93C5FD, height: 28,
             margin: const EdgeInsets.all(0.5),
             child: CustomPaint(
-              painter: _DottedBorderPainter(),
+              painter: DottedBorderPainter(),
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(4.38, 0, 4.38, 0),
                 child: FittedBox(
@@ -63,21 +60,33 @@ class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
             style: Theme.of(context).textTheme.titleMedium
           ),
           actions: <Widget>[
-            const A12ImgLoader(imgPath: A12ImgStrings.NOTIF_ICON),
+            Consumer(
+              builder: (_, WidgetRef ref, __) {
+                final bool shouldNotPad = ref.watch(boolProvider(A12Strings.ANIM_APPBAR));
+                return A12Container(
+                  duration: 300,
+                  margin: EdgeInsets.only(
+                    right: shouldNotPad ? 0 : 16
+                  ),
+                  child: const A12ImgLoader(imgPath: A12ImgStrings.NOTIF_ICON)
+                );
+              }
+            ),
           ],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(35),
-            child: A12Container(
-              margin: const EdgeInsets.fromLTRB(16, 0, 16, 15),
-              height: 20,
-              child: Consumer(
-                builder: (_, WidgetRef ref, __) {
-                  return Text(
+            child: Consumer(
+              builder: (_, WidgetRef ref, __) {
+                final bool shouldNotPad = ref.watch(boolProvider(A12Strings.ANIM_APPBAR));
+                return A12Container(
+                  margin: EdgeInsets.fromLTRB(16, 0, shouldNotPad ? 0 : 16, 15),
+                  height: 20, duration: 300,
+                  child: Text(
                     'Umezurike Road, Oyo State',
                     style: Theme.of(context).textTheme.titleLarge
-                  );
-                }
-              ),
+                  ),
+                );
+              }
             ),
           )
         ),
@@ -86,55 +95,4 @@ class _A12MainAppShellState extends ConsumerState<A12MainAppShell> {
       ),
     );
   }
-}
-
-
-
-
-
-
-
-class _DottedBorderPainter extends CustomPainter {
-  _DottedBorderPainter();
-
-  final Color color = A12Colors.hex2563EB;
-  final double strokeWidth = 1;
-  final double dashLength = 2;
-  final double gapLength = 2.5;
-  final BorderRadius? borderRadius = null;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final Paint paint = Paint()
-      ..color = color
-      ..strokeWidth = strokeWidth
-      ..style = PaintingStyle.stroke;
-
-    final Rect rect = Offset.zero & size;
-
-    Path path;
-
-    if (borderRadius != null && borderRadius != BorderRadius.zero) {
-      // If borderRadius is provided, use RRect (rounded rectangle)
-      path = Path()..addRRect(borderRadius!.toRRect(rect));
-    } else {
-      // Otherwise, use a simple rectangle
-      path = Path()..addRect(rect);
-    }
-
-    final PathMetrics pathMetrics = path.computeMetrics();
-
-    for (final PathMetric pathMetric in pathMetrics) {
-      double currentLength = 0.0;
-      while (currentLength < pathMetric.length) {
-        final double end = math.min(currentLength + dashLength, pathMetric.length);
-        final Path segment = pathMetric.extractPath(currentLength, end);
-        canvas.drawPath(segment, paint);
-        currentLength = end + gapLength;
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_) => false;
 }

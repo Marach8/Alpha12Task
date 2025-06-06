@@ -17,7 +17,7 @@ class A12AnimatedXFade extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
       duration: Duration(milliseconds: duration),
-      reverseDuration: Duration(milliseconds: duration ?? 500),
+      reverseDuration: Duration(milliseconds: duration),
       switchInCurve: curve,
       switchOutCurve: curve,
       transitionBuilder: (Widget child, Animation<double> animation) {

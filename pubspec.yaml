@@ -42,7 +42,6 @@ dependencies:
   synchronized: ^3.3.1
   go_router: ^15.1.2
   flutter_svg: ^2.1.0
-  device_preview: ^1.2.0
 
 dev_dependencies:
   flutter_test:
@@ -60,13 +59,13 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
-# icons_launcher:
-#   image_path: "assets/images/pngs/—Pngtree—golden bell with red ribbon_20947479.png"
-#   platforms:
-#     android:
-#       enable: true
-#     ios:
-#       enable: true
+icons_launcher:
+  image_path: "assets/images/pngs/gadgets.png"
+  platforms:
+    android:
+      enable: true
+    ios:
+      enable: true
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -112,10 +111,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
-# flutter_native_splash:
-#   image: assets/images/pngs/—Pngtree—golden bell with red ribbon_20947479 (1).png
-#   color: "#000000"
+flutter_native_splash:
+  image: assets/images/pngs/icon_512x512.png
+  color: "#FFFFFF"
 
-#   android_12:
-#     image: "assets/images/pngs/—Pngtree—golden bell with red ribbon_20947479 (1).png"
-#     color: "#000000"
+  android_12:
+    image: "assets/images/pngs/icon_512x512.png"
+    color: "#FFFFFF"

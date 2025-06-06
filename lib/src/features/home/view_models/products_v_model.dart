@@ -1,21 +1,22 @@
 import '../../../global_export.dart';
 
-final StateNotifierProvider<ProductsNotifier, AsyncValue<ProductsModel?>>
-  productsProvider = StateNotifierProvider<ProductsNotifier, AsyncValue<ProductsModel?>>(
+final StateNotifierProvider<ProductsNotifier, A12ApiState<ProductsModel>>
+  productsProvider = StateNotifierProvider<ProductsNotifier, A12ApiState<ProductsModel>>(
     (Ref ref) => ProductsNotifier(ref)
   );
 
-class ProductsNotifier extends StateNotifier<AsyncValue<ProductsModel?>>{
-  ProductsNotifier(this.ref): super(const AsyncData<ProductsModel?>(null));
+class ProductsNotifier extends StateNotifier<A12ApiState<ProductsModel>> {
+  ProductsNotifier(this.ref) : super(A12ApiState<ProductsModel>.initial());
 
   final Ref ref;
 
-  Future<void> fetchProducts()async{
-    state = const AsyncLoading<ProductsModel?>();
-    try{
-      //Fake an API call to fetch products
+  Future<void> fetchProducts() async {
+    state = A12ApiState<ProductsModel>.loading();
+
+    try {
+      //Simulate a network call
       await Future<void>.delayed(const Duration(seconds: 2));
-      
+
       final List<Product> products = <Product>[
         Product(
           id: '1',
@@ -79,15 +80,15 @@ class ProductsNotifier extends StateNotifier<AsyncValue<ProductsModel?>>{
         ),
       ];
 
-      state = AsyncData<ProductsModel?>(
-        ProductsModel(
-          productsId: '10', products: products,
-          productsGroupName: 'Smartphones, Laptops & Accessories'
-        )
+      final ProductsModel model = ProductsModel(
+        productsId: '10',
+        products: products,
+        productsGroupName: 'Smartphones, Laptops & Accessories',
       );
-    }
-    catch (e){
-      state = AsyncError<ProductsModel?>(e.toString(), StackTrace.current);
+
+      state = A12ApiState<ProductsModel>.success(model,);
+    } catch (e) {
+      state = A12ApiState<ProductsModel>.failure(e.toString());
     }
   }
 }

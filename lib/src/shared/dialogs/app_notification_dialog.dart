@@ -6,13 +6,14 @@ Future<dynamic> showAppNotification({
   required BuildContext context,
   required String text,
   required bool success,
+  int? duration,
 }) async {
   late Flushbar<dynamic> flushbar;
 
   flushbar = Flushbar<dynamic>(
     backgroundColor: A12Colors.transparent,
     flushbarPosition: FlushbarPosition.TOP,
-    duration: const Duration(milliseconds: 800),
+    duration: Duration(milliseconds: duration ?? 800),
     messageText: Center(
       child: CustomPaint(
         painter: _LeftBorderPainter(
